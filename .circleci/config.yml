@@ -14,9 +14,9 @@ jobs:
       - run: npm install
 
       - save_cache:
-        key: node-v1-{{ checksum "package.json" }}-{{ arch }}
-        paths:
-          - node_modules
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
 
       - run:
           working_directory: ~/
