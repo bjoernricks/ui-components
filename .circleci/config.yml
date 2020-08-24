@@ -8,19 +8,26 @@ jobs:
           ENV: CI
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
+      - restore_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+
+      - run: npm install
+
+      - save_cache:
+        key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+        paths:
+          - node_modules
+
       - run:
           working_directory: ~/
           name: Run JavaScript tests
           command: npm run test
           environment:
             JEST_JUNIT_OUTPUT_DIR: "./reports"
-    #  - run:
-     #     working_directory: ~/gsa/gsa
+      #  - run:
+      #     working_directory: ~/gsa/gsa
       #    name: Submit test coverage to codecov.io
-       #   command: bash <(curl -s https://codecov.io/bash)
+      #   command: bash <(curl -s https://codecov.io/bash)
       #- store_test_results:
       #    path: ~/gsa/gsa/reports
       #- store_artifacts:
