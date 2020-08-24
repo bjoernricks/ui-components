@@ -1,7 +1,7 @@
 version: 2
 jobs:
   js_test:
-    working_directory: ~/
+    working_directory: ~/ui-components
     docker:
       - image: circleci/node:14
         environment:
@@ -19,7 +19,7 @@ jobs:
             - node_modules
 
       - run:
-          working_directory: ~/
+          working_directory: ~/ui-components
           name: Run JavaScript tests
           command: npm run test
           environment:
