@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
+    "test-ci": "jest --ci --coverage --reporters=default --reporters=jest-junit",
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production"
   },
@@ -17,9 +18,13 @@
     "react-dom": "^16"
   },
   "devDependencies": {
+    "babel-polyfill": "7.0.0-beta.3",
     "@neutrinojs/jest": "^9.3.0",
     "@neutrinojs/react-components": "^9.3.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.3",
     "jest": "^26.4.2",
+    "jest-junit": "^10.0.0",
     "neutrino": "^9.3.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
